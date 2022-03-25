@@ -10,7 +10,7 @@ date: "24/3/2022"
 output: html_document
 ---
 
-Primer punto
+<h3>Primer punto<h3>
 -Definición de data
 ```{r}
 poblacion <- c(29.66, 7.61, 6.35, 4.10, 3.8, 2.75, 2.70, 2.69, 2.51, 2.44,
@@ -46,5 +46,21 @@ Holanda tiene asimetria positiva como tambien usa.
 Interpretación punto B: 
 Holanda es el pais con los datos más agrupados (menos dispersos).
 Japon es el pais con los datos más dispersos
-Holanda no tiene outliers
+Holanda no tiene outliers.
+
+
+
+<h3>Tercer punto<h3>
+-Definición de data
+```{r}
+media <- 400;
+desvEstandar <- 5;
+PNC <- 415;
+
+probPNC <- pnorm(PNC, mean = media, sd = desvEstandar, lower.tail = FALSE);
+porcentajePNC<-probPNC*100;
+porcentajePNC;
+```
+Interpretación tercer punto: el porcentaje de las botellas de
+gaseosa que son declaradas producto NO CONFORME es de 0.13%.
 
