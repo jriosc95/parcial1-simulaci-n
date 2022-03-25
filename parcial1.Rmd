@@ -10,7 +10,25 @@ date: "24/3/2022"
 output: html_document
 ---
 
-<h3>Primer punto</h3>
+<h3>1.</h3> La tabla mostrada contiene valores de población, en cientos de miles, de las diez ciudades más
+pobladas de cuatro países en el año 1967:
+Argentina EE. UU. Holanda Japón
+29.66 77.81 8.68 110.21
+7.61 35.50 7.31 32.14
+6.35 24.79 6.02 18.88
+4.10 20.02 2.64 16.38
+3.80 16.70 1.75 13.37
+2.75 9.39 1.72 11.92
+2.70 9.38 1.51 10.71
+2.69 8.76 1.42 7.80
+2.51 7.63 1.31 7.70
+2.4 4 7.50 1.29 7.00
+a) Construya un box-plot e identifique los puntos extremos. ¿Cuáles son las características más
+sobresalientes? ¿Hay outliers?
+b) Compare los centros de cada población, sus dispersiones y su simetría. ¿Cuál es el país más
+homogéneamente habitado? ¿Cuáles son las características más sobresalientes? ¿Hay outliers?
+
+<h3>Solución</h3>
 -Definición de data
 ```{r}
 poblacion <- c(29.66, 7.61, 6.35, 4.10, 3.8, 2.75, 2.70, 2.69, 2.51, 2.44,
@@ -49,8 +67,42 @@ Japon es el pais con los datos más dispersos
 Holanda no tiene outliers.
 
 
+<h3>2.</h3> Avianca se encuentra estudiando la situación de venta de puesto en el vuelo Armenia – Bogotá puesto
+que ha identificado que el 2% de las personas que reservaron puesto, no se presentan a la hora del
+embarque. Teniendo en cuenta que el avión A320 utilizado en esta ruta tiene una capacidad para 180
+pasajeros, la empresa decide vender 181 tiquetes. ¿Cuál es la probabilidad de que todas las personas que
+llegan a embarque puedan tener su silla asegurada y no se presenten quejas por “sobre-vender” sillas ante
+la aeronáutica civil? Asuma que las llegadas de los pasajeros siguen una distribución Poisson.
 
-<h3>Tercer punto</h3>
+<h3>Solución</h3>
+
+-Definición
+Nota:lambda es el promedio de pasajeros que asisten al vuelo (se resta el 2% de pasajeros que normalmente no asisten).
+```{r}
+probInasistenciaPasajeros <- 0.02
+lambda <- round(180-(180*probInasistenciaPasajeros)); lambda
+
+probMenor181Pasajeros <- ppois(181, lambda = lambda); probMenor181Pasajeros*100;
+
+```
+```{r}
+plot = plot(ppois(0:181, 176), type = "s", lwd = 2,
+     main = "Función de distribución de probabilidad para avión A320",
+     xlab = "Número de pasajeros", ylab = "F(x)")+
+arrows(180,probMenor181Pasajeros,0,probMenor181Pasajeros,col = 'green', pch=18);
+```
+
+
+Interpretación segundo punto: la probabilidad de que todas las personas que
+llegan a embarque puedan tener su silla asegurada y no se presenten quejas por “sobre-vender" es de 66%.  
+
+
+<h3>3.</h3>En la planta envasadora de Coca-Cola FEMSA ubicada en Tocancipá se realiza el embotellado de la CocaCola presentación de 400 mL (en promedio), con una desviación estándar de 5 mL (mililitros). Si se sabe por
+experiencia que este proceso de embotellado sigue una distribución normal, y también se sabe que todo
+producto con más de 415 mL es declarado como NO CONFORME. Determine el porcentaje de las botellas de
+gaseosa que son declaradas producto NO CONFORME.
+
+<h3>Solución</h3>
 -Definición de data
 ```{r}
 media <- 400;
@@ -61,6 +113,14 @@ probPNC <- pnorm(PNC, mean = media, sd = desvEstandar, lower.tail = FALSE);
 porcentajePNC<-probPNC*100;
 porcentajePNC;
 ```
+```{r}
+plot = plot(pnorm(0:500, mean=media, sd = desvEstandar, lower.tail = FALSE), type = "s", lwd = 2,
+     main = "distribución de probabilidad para productos no conformes (coca cola)",
+     xlab = "Cantidad de mL", ylab = "F(x)")+points(415:500,pnorm(415:500, mean=media, sd = desvEstandar, lower.tail = FALSE), col="green");
+```
+
+
+
 Interpretación tercer punto: el porcentaje de las botellas de
 gaseosa que son declaradas producto NO CONFORME es de 0.13%.
 
