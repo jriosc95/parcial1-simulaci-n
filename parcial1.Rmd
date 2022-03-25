@@ -10,7 +10,7 @@ date: "24/3/2022"
 output: html_document
 ---
 
-<h3>Primer punto<h3>
+<h3>Primer punto</h3>
 -Definición de data
 ```{r}
 poblacion <- c(29.66, 7.61, 6.35, 4.10, 3.8, 2.75, 2.70, 2.69, 2.51, 2.44,
@@ -50,7 +50,7 @@ Holanda no tiene outliers.
 
 
 
-<h3>Tercer punto<h3>
+<h3>Tercer punto</h3>
 -Definición de data
 ```{r}
 media <- 400;
